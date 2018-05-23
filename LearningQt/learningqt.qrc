@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="/LearningQt">
+    <file>Images/splash.png</file>
+    <file>Images/flipHorizontal.png</file>
+    <file>Images/flipVertical.png</file>
+    <file>Images/rotateClockwise.png</file>
+    <file>Images/rotateCounterClockwise.png</file>
+    <file>Images/record.png</file>
+    <file>Images/stop.png</file>
+    <file>Images/pause.png</file>
+    <file>Images/play.png</file>
+    <file>Images/disabled.png</file>
+    <file>Images/enabled.png</file>
+  </qresource>
+</RCC>
