@@ -629,7 +629,7 @@ void WorkerOpenCV::process()
 				/// Detect edges using canny
 				cv::Canny(inputImage, cannyEdges, contoursThreshold, contoursThreshold * 2, 3);
 
-				findContours(
+				cv::findContours(
 					cannyEdges,
 					contours,
 					hierarchy,
@@ -642,7 +642,7 @@ void WorkerOpenCV::process()
 				for (size_t i = 0; i< contours.size(); i++)
 				{
 					cv::Scalar color = cv::Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
-					drawContours(drawing, contours, (int)i, color, 2, 8, hierarchy, 0, cv::Point());
+					cv::drawContours(drawing, contours, (int)i, color, 2, 8, hierarchy, 0, cv::Point());
 				}
 
 				_frameProcessed += drawing;
@@ -688,7 +688,7 @@ void WorkerOpenCV::process()
 				std::vector<std::vector<cv::Point> >hull(contours.size());
 				for (size_t i = 0; i < contours.size(); i++)
 				{
-					convexHull(cv::Mat(contours[i]), hull[i], false);
+					cv::convexHull(cv::Mat(contours[i]), hull[i], false);
 				}
 
 				/// Draw contours + hull results
@@ -696,8 +696,8 @@ void WorkerOpenCV::process()
 				for (size_t i = 0; i< contours.size(); i++)
 				{
 					cv::Scalar color = cv::Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
-					drawContours(drawing, contours, (int)i, color, 1, 8, std::vector<cv::Vec4i>(), 0, cv::Point());
-					drawContours(drawing, hull, (int)i, color, 1, 8, std::vector<cv::Vec4i>(), 0, cv::Point());
+					cv::drawContours(drawing, contours, (int)i, color, 1, 8, std::vector<cv::Vec4i>(), 0, cv::Point());
+					cv::drawContours(drawing, hull, (int)i, color, 1, 8, std::vector<cv::Vec4i>(), 0, cv::Point());
 				}
 
 				_frameProcessed += drawing;
@@ -731,7 +731,7 @@ void WorkerOpenCV::process()
 				copy = _frameProcessed.clone();
 
 				/// Apply corner detection
-				goodFeaturesToTrack(
+				cv::goodFeaturesToTrack(
 					inputImage,
 					corners,
 					cornerDetectionMaxCorners,
@@ -746,7 +746,7 @@ void WorkerOpenCV::process()
 				int r = 4;
 				for (size_t i = 0; i < corners.size(); i++)
 				{
-					circle(copy, corners[i], r, cv::Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)), -1, 8, 0);
+					cv::circle(copy, corners[i], r, cv::Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)), -1, 8, 0);
 				}
 
 				_frameProcessed += copy;
